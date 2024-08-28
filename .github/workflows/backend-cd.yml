@@ -71,5 +71,5 @@ jobs:
         REPO_NAME: project4_backend
       run: |
         aws eks update-kubeconfig --name udacityproject4  --region us-east-1
-        kustomize edit set image backend=669172573612.dkr.ecr.us-east-1.amazonaws.com/$REPO_NAME:$IMAGE_TAG
+        kustomize edit set image backend=362093802659.dkr.ecr.us-east-1.amazonaws.com/$REPO_NAME:$IMAGE_TAG
         kustomize build | kubectl apply -f -
