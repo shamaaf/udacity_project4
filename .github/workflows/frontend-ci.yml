@@ -7,9 +7,9 @@ on:
       - main
 
 jobs:
-  Linting:
+  Lint:
     runs-on: ubuntu-latest
-    environment: Devlopmnet Environment
+    environment: staging
 
     steps:
     - name: Check the Repository
@@ -50,7 +50,7 @@ jobs:
       run: cd starter/frontend && npm run test
       
   Build:
-    needs: [Linting, Test]
+    needs: [Lint, Test]
     runs-on: ubuntu-latest
     
     steps:
