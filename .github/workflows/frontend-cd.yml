@@ -81,15 +81,15 @@ jobs:
       uses: aws-actions/amazon-ecr-login@v2
 
     - name: Configure kubectl
-        run: |
-          aws eks update-kubeconfig --name udacityproject4 --region us-east-1
+      run: |
+        aws eks update-kubeconfig --name udacityproject4 --region us-east-1
 
     - name: Display application URLs
-        id: get_be_service_url
-        run: |
-          cd starter/frontend/k8s
-          kubectl get svc -A
-          BE_SERVICE_URL=$(kubectl get svc backend -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+      id: get_be_service_url
+      run: |
+        cd starter/frontend/k8s
+        kubectl get svc -A
+        BE_SERVICE_URL=$(kubectl get svc backend -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
           echo "BE_SERVICE_URL=${BE_SERVICE_URL}"
           echo "::set-output name=be_service_url::${BE_SERVICE_URL}"  
 
@@ -115,10 +115,10 @@ jobs:
         IMAGE_TAG: latest
         REPO_NAME: project4_frontend
       run: |
-          kustomize edit set image frontend=362093802659.dkr.ecr.us-east-1.amazonaws.com/$REPO_NAME:$IMAGE_TAG
-          kustomize build | kubectl apply -f -
+        kustomize edit set image frontend=362093802659.dkr.ecr.us-east-1.amazonaws.com/$REPO_NAME:$IMAGE_TAG
+        kustomize build | kubectl apply -f -
 
     - name: Display application URLs       
-        run: |
-          cd starter/frontend/k8s
-          kubectl get svc -A
+      run: |
+        cd starter/frontend/k8s
+        kubectl get svc -A
