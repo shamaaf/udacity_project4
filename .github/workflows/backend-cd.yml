@@ -37,7 +37,7 @@ jobs:
 
   Test:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Check the Repository
       uses: actions/checkout@v3
@@ -85,8 +85,8 @@ jobs:
         REPO_NAME: project4_backend
       run: |
         docker build -t backend:${IMAGE_TAG} .
-        docker tag backend:${IMAGE_TAG} ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com/$REPO_NAME:$IMAGE_TAG
-        docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com/$REPO_NAME:$IMAGE_TAG
+        docker tag backend:${IMAGE_TAG} 362093802659.dkr.ecr.us-east-1.amazonaws.com/$REPO_NAME:$IMAGE_TAG
+        docker push 362093802659.dkr.ecr.us-east-1.amazonaws.com/$REPO_NAME:$IMAGE_TAG
 
     - name: Update Kubeconfig
       run:
@@ -99,7 +99,7 @@ jobs:
         REPO_NAME: project4_backend
       run: |
         cd starter/backend/k8s
-        kustomize edit set image backend=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com/$REPO_NAME:$IMAGE_TAG
+        kustomize edit set image backend=362093802659.dkr.ecr.us-east-1.amazonaws.com/$REPO_NAME:$IMAGE_TAG
         kustomize build | kubectl apply -f -
 
     - name: Display application URL      
