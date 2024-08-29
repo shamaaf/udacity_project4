@@ -101,7 +101,6 @@ jobs:
       run: |
         echo "Using BE_SERVICE_URL=${{ steps.get_be_service_url.outputs.be_service_url }}"
         docker build --build-arg=REACT_APP_MOVIE_API_URL=http://${{ steps.get_be_service_url.outputs.be_service_url }} --tag=362093802659.dkr.ecr.us-east-1.amazonaws.com/$REPO_NAME:$IMAGE_TAG .
-        docker tag frontend:${IMAGE_TAG} 362093802659.dkr.ecr.us-east-1.amazonaws.com/$REPO_NAME:$IMAGE_TAG
         docker push 362093802659.dkr.ecr.us-east-1.amazonaws.com/$REPO_NAME:$IMAGE_TAG    
 
     - name: Configure Kubeconfig
